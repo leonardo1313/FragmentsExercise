@@ -2,6 +2,7 @@ package com.example.fragmentsexercise.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.commit
 import com.example.fragmentsexercise.R
 
 class MainActivity : AppCompatActivity() {
@@ -10,5 +11,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_main)
+
+        supportFragmentManager.commit {
+            setReorderingAllowed(true)
+            add(R.id.fragment_container_view, SongsFragment())
+            addToBackStack(null)
+        }
     }
+
+
 }
