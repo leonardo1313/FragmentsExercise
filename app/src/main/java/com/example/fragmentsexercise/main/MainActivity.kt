@@ -12,11 +12,14 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_main)
 
+
         supportFragmentManager.commit {
             setReorderingAllowed(true)
-            add(R.id.fragment_container_view, SongsFragment())
+            add(R.id.fragment_container_view_main, SongsFragment())
             addToBackStack(null)
         }
+
+
     }
 
 
