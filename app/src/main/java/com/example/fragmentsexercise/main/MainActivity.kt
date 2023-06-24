@@ -15,7 +15,10 @@ class MainActivity : AppCompatActivity() {
 
         supportFragmentManager.commit {
             setReorderingAllowed(true)
-            add(R.id.fragment_container_view_main, SongsFragment())
+            //add(R.id.fragment_container_view_main, SongsFragment())
+
+            //Opening web page inside mobile app
+            add(R.id.fragment_container_view_main, MoreInfoFragment())
             addToBackStack(null)
         }
 
