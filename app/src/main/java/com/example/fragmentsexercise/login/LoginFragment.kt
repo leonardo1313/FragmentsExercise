@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
 import com.example.fragmentsexercise.main.MainActivity
@@ -38,14 +39,18 @@ class LoginFragment : Fragment() {
             submitBtn.setOnClickListener {
                 Log.d("CHECK", "username = ${usernameText.editableText} password = ${passwordText.editableText}")
 
+                //TODO Check if username and password are nut null -> if they are not go to next screen and if there's no input display Toast message
                 val intent = Intent().apply {
                     setClass(this@LoginFragment.requireContext(), MainActivity::class.java)
                 }
                 startActivity(intent)
+                //To destroy activity after it's no longer visible
+                this.activity?.finish()
             }
         }
 
         setFragmentResult("REQUEST_KEY", bundleOf("MESSAGE" to "Welcome"))
         //Bundle(1).apply {  }
+
     }
 }

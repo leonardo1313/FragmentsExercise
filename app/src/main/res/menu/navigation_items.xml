@@ -6,9 +6,9 @@
             android:icon="@drawable/camera_icon"
             android:title="Import" />
         <item
-            android:id="@+id/galery_item"
+            android:id="@+id/gallery_item"
             android:icon="@drawable/gallery_icon"
-            android:title="Galery" />
+            android:title="Gallery" />
         <item
             android:id="@+id/slide_show_item"
             android:icon="@drawable/slideshow_icon"
