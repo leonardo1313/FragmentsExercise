@@ -37,13 +37,23 @@ class LoginFragment : Fragment() {
             submitBtn = it.findViewById(R.id.submit_btn)
 
             submitBtn.setOnClickListener {
-                Log.d("CHECK", "username = ${usernameText.editableText} password = ${passwordText.editableText}")
+                Log.d(
+                    "CHECK",
+                    "username = ${usernameText.editableText} password = ${passwordText.editableText}"
+                )
 
                 //TODO Check if username and password are nut null -> if they are not go to next screen and if there's no input display Toast message
-                val intent = Intent().apply {
-                    setClass(this@LoginFragment.requireContext(), MainActivity::class.java)
+
+                if (usernameText.editableText.isNotEmpty() && passwordText.editableText.isNotEmpty()) {
+                    val intent = Intent().apply {
+                        setClass(this@LoginFragment.requireContext(), MainActivity::class.java)
+                    }
+                    startActivity(intent)
+                } else {
+                    Toast.makeText(requireContext(), "Enter username and/or password!", Toast.LENGTH_LONG).show()
                 }
-                startActivity(intent)
+
+
                 //To destroy activity after it's no longer visible
                 this.activity?.finish()
             }
