@@ -2,6 +2,8 @@ package com.example.fragmentsexercise.login
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -36,26 +38,98 @@ class LoginFragment : Fragment() {
             passwordText = it.findViewById(R.id.password_tv)
             submitBtn = it.findViewById(R.id.submit_btn)
 
+            var usernameNotEmpty = false
+            var passwordNotEmpty = false
+
+            usernameText.addTextChangedListener(object : TextWatcher {
+                override fun beforeTextChanged(
+                    s: CharSequence?,
+                    start: Int,
+                    count: Int,
+                    after: Int
+                ) {
+                    Log.d("TAG", "Not implemented!")
+                }
+
+                override fun onTextChanged(
+                    s: CharSequence?,
+                    start: Int,
+                    before: Int,
+                    count: Int
+                ) {
+                    Log.d("TAG", "Not implemented!")
+                }
+
+                override fun afterTextChanged(s: Editable?) {
+                    if (s!!.isNotEmpty()) {
+                        usernameNotEmpty = true
+                    }
+                    if (usernameNotEmpty && passwordNotEmpty) {
+                        submitBtn.isEnabled = true
+                    }
+                }
+
+            })
+
+            passwordText.addTextChangedListener(object : TextWatcher {
+                override fun beforeTextChanged(
+                    s: CharSequence?,
+                    start: Int,
+                    count: Int,
+                    after: Int
+                ) {
+                    Log.d("TAG", "Not implemented!")
+                }
+
+                override fun onTextChanged(
+                    s: CharSequence?,
+                    start: Int,
+                    before: Int,
+                    count: Int
+                ) {
+                    Log.d("TAG", "Not implemented!")
+                }
+
+                override fun afterTextChanged(s: Editable?) {
+                    if (s!!.isNotEmpty()) {
+                        passwordNotEmpty = true
+                    }
+                    if (usernameNotEmpty && passwordNotEmpty) {
+                        submitBtn.isEnabled = true
+                    }
+                }
+
+            })
+
             submitBtn.setOnClickListener {
-                Log.d(
-                    "CHECK",
-                    "username = ${usernameText.editableText} password = ${passwordText.editableText}"
-                )
 
                 //TODO Check if username and password are nut null -> if they are not go to next screen and if there's no input display Toast message
 
-                if (usernameText.editableText.isNotEmpty() && passwordText.editableText.isNotEmpty()) {
-                    val intent = Intent().apply {
-                        setClass(this@LoginFragment.requireContext(), MainActivity::class.java)
-                    }
-                    startActivity(intent)
-                } else {
-                    Toast.makeText(requireContext(), "Enter username and/or password!", Toast.LENGTH_LONG).show()
+
+                val intent = Intent().apply {
+                    setClass(this@LoginFragment.requireContext(), MainActivity::class.java)
                 }
+                startActivity(intent)
 
+//                if (usernameText.editableText.isNotEmpty() && passwordText.editableText.isNotEmpty()) {
+//                    submitBtn.isEnabled = true
+//                }
 
+//                if (usernameText.editableText.isEmpty() || passwordText.editableText.isEmpty()) {
+//                    Toast.makeText(
+//                        requireContext(),
+//                        "Enter username and/or password!",
+//                        Toast.LENGTH_LONG
+//                    ).show()
+//                } else {
+//                    val intent = Intent().apply {
+//                        setClass(this@LoginFragment.requireContext(), MainActivity::class.java)
+//                    }
+//                    startActivity(intent)
+//                }
                 //To destroy activity after it's no longer visible
-                this.activity?.finish()
+                //this.activity?.finish()
+
             }
         }
 
